@@ -2,8 +2,8 @@
   "name": "babel-typescript-sample",
   "scripts": {
     "type-check": "tsc --noEmit",
+    "build": "webpack --mode production",
     "start": "webpack-dev-server --history-api-fallback --config webpack.dev.js",
-    "build": "tsc --emitDeclarationOnly && babel src --out-dir build --extensions \".ts,.tsx\"",
     "format": "prettier --single-quote --trailing-comma es5 --write 'src/**/*.+(ts|js|css)'"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "react-dom": "^16.4.2",
     "style-loader": "^0.23.0",
     "typescript": "^3.0.1",
+    "uglifyjs-webpack-plugin": "^1.3.0",
     "url-loader": "^1.1.1"
   },
   "devDependencies": {

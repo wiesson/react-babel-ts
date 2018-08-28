@@ -1,21 +1,15 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
     app: './src/index.tsx',
   },
-  stats: { children: false },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
-  devServer: {
-    hot: true,
-    port: 3000,
-  },
-  mode: 'development',
   module: {
     rules: [
       {
@@ -42,18 +36,43 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'app.bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'static/js/[name].[chunkhash:8].js',
+    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+      }),
+    ],
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendors',
+    },
+    runtimeChunk: true,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: 'static/css/[id].css',
+      filename: 'static/css/[name].[contenthash:8].css',
+      chunkFilename: 'static/css/[id].[contenthash:8].css',
     }),
     new HtmlWebPackPlugin({
-      title: 'Dev',
       template: './public/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
     }),
   ],
 };
