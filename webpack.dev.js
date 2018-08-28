@@ -15,19 +15,25 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(tsx?)|(js)$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
+        test: /\.module\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { modules: true } },
+        ],
       },
       {
         test: /\.css$/,
         exclude: /\.module\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          'css-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack', 'url-loader'],
+      },
+      {
+        test: /\.(tsx?)|(js)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
       },
     ],
   },

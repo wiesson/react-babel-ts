@@ -1,5 +1,7 @@
 import * as React from 'react';
+import styles from './App.module.css';
 import Input from './Input';
+import logoSrc from '../logo.svg';
 
 // @ts-ignore
 import Foo from './Foo';
@@ -13,11 +15,13 @@ class App extends React.Component<Props> {
     const { message } = this.props;
 
     return (
-      <>
-        <p>{message}</p>
+      <div className={styles.root}>
+        <h4>{message}</h4>
         <Input />
         <Foo />
-      </>
+        <h4>Some svg</h4>
+        <img src={logoSrc} alt="Hi from SVG" />
+      </div>
     );
   }
 }
