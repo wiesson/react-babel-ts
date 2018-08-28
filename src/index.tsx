@@ -3,6 +3,6 @@ import * as ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 
-ReactDOM.render(<App message="Welcome to React" />, document.getElementById(
+ReactDOM.render(<App message="Hello from App.tsx" />, document.getElementById(
   'root'
 ) as HTMLElement);

@@ -10,9 +10,11 @@ interface Props {
 
 class App extends React.Component<Props> {
   render() {
+    const { message } = this.props;
+
     return (
       <>
-        <p>Hello from App.tsx</p>
+        <p>{message}</p>
         <Input />
         <Foo />
       </>
