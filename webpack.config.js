@@ -39,6 +39,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    publicPath: '/',
   },
   optimization: {
     minimizer: [
