@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { Link, Router } from '@reach/router';
 import styles from './App.module.css';
 import Input from './Input';
-import logoSrc from '../logo.svg';
 
 // @ts-ignore
 import Foo from './Foo';
+import SomeSvg from './SomeSvg';
+import Invoices, { Invoice } from './Invoices';
 
 interface Props {
   message: string;
@@ -17,10 +19,17 @@ class App extends React.Component<Props> {
     return (
       <div className={styles.root}>
         <h4>{message}</h4>
-        <Input />
-        <Foo />
-        <h4>Some svg</h4>
-        <img src={logoSrc} alt="Hi from SVG" />
+        <Link to="/some-svg">Hello SVG</Link>{' '}
+        <Link to="/some-input">Some Input</Link>{' '}
+        <Link to="/invoices">Invoices</Link>{' '}
+        <Link to="/some-page">JS Component</Link>
+        <Router>
+          <Foo path="/some-page" />
+          <Input path="/some-input" />
+          <SomeSvg path="/some-svg" />
+          <Invoices path="/invoices" />
+          <Invoice path="/invoices/:invoiceId" invoiceId="default-id" />
+        </Router>
       </div>
     );
   }

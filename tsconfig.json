@@ -30,7 +30,8 @@
     // "alwaysStrict": true,
 
     /* Additional Checks */
-    // "noUnusedLocals": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
     // "noUnusedParameters": true,
     // "noImplicitReturns": true,
     // "noFallthroughCasesInSwitch": true,
@@ -57,6 +58,6 @@
     // "emitDecoratorMetadata": true,
 
     /* Advanced Options */
-    // "declarationDir": "lib"                
+    // "declarationDir": "lib"
   }
 }

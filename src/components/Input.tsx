@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { RouteComponentProps } from '@reach/router';
 
 type State = {
   title: string;
   description: string;
 };
 
-class Input extends React.Component<{}, State> {
+class Input extends React.Component<RouteComponentProps, State> {
   state = {
     title: '',
     description: '',
@@ -25,6 +26,7 @@ class Input extends React.Component<{}, State> {
 
     return (
       <form onSubmit={this.handleSubmit}>
+        <h4>Input</h4>
         <input
           value={title}
           placeholder="Title"

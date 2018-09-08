@@ -35,9 +35,17 @@ module.exports = {
         use: ['@svgr/webpack', 'url-loader'],
       },
       {
-        test: /\.(tsx?)|(js)$/,
+        test: /\.(tsx?)/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
+        },
       },
     ],
   },
